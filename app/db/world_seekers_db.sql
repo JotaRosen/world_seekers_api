@@ -12,12 +12,12 @@ CREATE TABLE `units` (
   `level` int(60) DEFAULT NULL,
   `price` int(100) DEFAULT NULL,
   `on_sale` boolean DEFAULT false,
-  `name` int(10) NOT NULL,
+  `name` int(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=innoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO `units` (`type`,`element`, `level`,`price`, `on_sale` ,`name`) VALUES (0, 0, 10, 25, false, 0), (1, 1, 11, 70, true, 1), (2, 2, 12, 45, true, 2), (3, 3, 13, 55, false, 3), (4, 4, 14, 47, false, 4), (4, 5, 10, 35, true, 5), (3, 2, 9, 5, true, 5),(1, 4, 16, 56, false, 4);
+INSERT INTO `units` (`type`,`element`, `level`,`price`, `on_sale` ,`name`) VALUES (0, 0, 10, 25, false, 0), (1, 1, 11, 70, true, 1), (2, 2, 12, 45, true, 0), (3, 3, 13, 55, false, 1), (4, 4, 14, 47, false, 1), (4, 5, 10, 35, true, 0), (3, 2, 9, 5, true, 0),(1, 4, 16, 56, false, 1);
 
 
 
@@ -35,8 +35,6 @@ CREATE TABLE `users` (
 ) ENGINE=innoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `users` (`email`,`username`,`password`, `description`, `profile_pic`) VALUES ("author@email.com", "Test Username", "$2b$10$OwR11K7I6uZSJBau5Ndrxe22hPQqLVZVSI1Ox3hqru3UE3avOxPwS","", "user2.jpg"), ("author2@email.com", "Test Username2", "$2b$10$pJccLp2nRTsEph6XfVTynuvMEZnqSf7CYDFOS7Yu7TbXkSLZew2kK","", "create_image-1629822576560.jpg");
-
--- Tabla colecciones. Esta es una tabla intermedia que relaciona a X cantidad de nfts que pertencen (en ownership) a un usuario.
 
 
 DROP TABLE IF EXISTS `transactions`;
@@ -76,7 +74,7 @@ CREATE TABLE `inventory` (
 
 INSERT INTO `inventory` (`owner_id`, `unit_id`) VALUES (1,2),(1,3),(2,1),(1,4);
 
--- Tabla colecciones. Esta es una tabla intermedia que relaciona a X cantidad de nfts que pertencen (en ownership) a un usuario.
+
 
 
 
