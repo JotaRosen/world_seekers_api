@@ -12,12 +12,13 @@ CREATE TABLE `units` (
   `level` int(60) DEFAULT NULL,
   `price` int(100) DEFAULT NULL,
   `on_sale` boolean DEFAULT false,
+  `listed_at` timestamp NULL DEFAULT NULL,
   `name` int(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=innoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO `units` (`type`,`element`, `level`,`price`, `on_sale` ,`name`) VALUES (0, 0, 10, 25, false, 0), (1, 1, 11, 70, true, 1), (2, 2, 12, 45, true, 0), (3, 3, 13, 55, false, 1), (4, 4, 14, 47, false, 1), (4, 5, 10, 35, true, 0), (3, 2, 9, 5, true, 0),(1, 4, 16, 56, false, 1);
+INSERT INTO `units` (`type`,`element`, `level`,`price`, `on_sale`, `listed_at` ,`name`) VALUES (0, 0, 10, 25, false,"2021-10-12T10:18:33.000Z",0), (1, 1, 11, 70, true, "2021-07-12T10:18:33.000Z",1), (2, 2, 12, 45, true,"2021-01-16T10:18:33.000Z",0), (3, 3, 13, 55, false, "2021-10-12T10:18:33.000Z",1), (4, 4, 14, 47, false, "2020-12-12T10:18:33.000Z",1), (4, 5, 10, 35, true, "2021-09-12T10:18:33.000Z",0), (3, 2, 9, 5, false, "2021-12-09T10:18:33.000Z",0),(1, 4, 16, 56, true, "2011-06-26T10:18:33.000Z",1);
 
 
 
@@ -35,6 +36,8 @@ CREATE TABLE `users` (
 ) ENGINE=innoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `users` (`email`,`username`,`password`, `description`, `profile_pic`) VALUES ("author@email.com", "Test Username", "$2b$10$OwR11K7I6uZSJBau5Ndrxe22hPQqLVZVSI1Ox3hqru3UE3avOxPwS","", "user2.jpg"), ("author2@email.com", "Test Username2", "$2b$10$pJccLp2nRTsEph6XfVTynuvMEZnqSf7CYDFOS7Yu7TbXkSLZew2kK","", "create_image-1629822576560.jpg");
+
+-- Tabla colecciones. Esta es una tabla intermedia que relaciona a X cantidad de nfts que pertencen (en ownership) a un usuario.
 
 
 DROP TABLE IF EXISTS `transactions`;
@@ -54,7 +57,7 @@ CREATE TABLE `transactions` (
   CONSTRAINT `unit_tx_idfk` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=innoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `transactions` (`buyer_id`,`seller_id`,`unit_id`, `tx_price`,`tx_occurr_at`) VALUES (1,2,3, 25,"2021-10-19T10:18:33.000Z"), (2,1,2, 35,"2021-10-12T10:18:33.000Z"), (2,1,4, 35,"2021-9-19T10:18:33.000Z");
+INSERT INTO `transactions` (`buyer_id`,`seller_id`,`unit_id`, `tx_price`,`tx_occurr_at`) VALUES (1,2,3, 25,"2021-10-19T10:18:33.000Z"), (2,1,2, 35,"2021-10-12T10:18:33.000Z"),(2,1,4, 35,"2021-9-19T10:18:33.000Z");
 
 
 
@@ -74,12 +77,5 @@ CREATE TABLE `inventory` (
 
 INSERT INTO `inventory` (`owner_id`, `unit_id`) VALUES (1,2),(1,3),(2,1),(1,4);
 
-
-
-
-
-
-
-
-
+-- Tabla colecciones. Esta es una tabla intermedia que relaciona a X cantidad de nfts que pertencen (en ownership) a un usuario.
 

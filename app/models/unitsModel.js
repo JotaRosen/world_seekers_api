@@ -22,6 +22,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         name:{
             type: Sequelize.DataTypes.INTEGER
+        },
+        listed_at:{
+            type: Sequelize.DataTypes.DATE
         }
     }, 
     {
