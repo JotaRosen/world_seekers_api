@@ -42,11 +42,15 @@ exports.getBannerInfo = (req,res) => {
     Transactions.findAll({
       include: [{model: Units}]
     }).then(result => {
-      let responseUnitArray = [];
+      let txArray = [];
       result.forEach(element => {
-        responseUnitArray.push(element.Unit);
+        txArray.push({
+          price: element.tx_price,
+          date: element.tx_occurr_at,
+          unit: element.Unit
+        });
       });
-      res.send(responseUnitArray);
+      res.send(txArray);
     }).catch(err =>{
       console.log(err);
       res.status(500).send(err)
