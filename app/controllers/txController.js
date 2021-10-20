@@ -46,8 +46,13 @@ exports.getBannerInfo = (req,res) => {
       result.forEach(element => {
         txArray.push({
           price: element.tx_price,
-          date: element.tx_occurr_at,
-          unit: element.Unit
+          listed_at: element.tx_occurr_at,
+          id: element.Unit.id,
+          type: element.Unit.type,
+          element: element.Unit.element,
+          level: element.Unit.level,
+          name: element.Unit.id,
+
         });
       });
       res.send(txArray);
