@@ -1,5 +1,6 @@
 const db = require("../models");
 const Transactions = db.Transactions;
+const Units = db.Units;
 const Op = db.Sequelize.Op;
 
 //banner info
@@ -38,9 +39,16 @@ exports.getBannerInfo = (req,res) => {
   }
 
   exports.getRecentlySold = (req,res) => {
-    Transactions.findAll().then(result => {
-      res.send(result);
+    Transactions.findAll({
+      include: [{model: Units}]
+    }).then(result => {
+      let responseUnitArray = [];
+      result.forEach(element => {
+        responseUnitArray.push(element.Unit);
+      });
+      res.send(responseUnitArray);
     }).catch(err =>{
+      console.log(err);
       res.status(500).send(err)
     })
   }

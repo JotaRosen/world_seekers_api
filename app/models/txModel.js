@@ -25,7 +25,15 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false,
         tableName: 'transactions'
     });
+
+    Transactions.associate = ({Units}) =>{
+        Transactions.hasOne(Units, {
+            foreignKey: "id"
+        });
+
+    }
   
     return Transactions;
   };
+
   
